@@ -52,6 +52,10 @@ Criação do Dashboard: Desenvolvemos um dashboard interativo usando o Streamlit
 4. A sazonalidade da quantidade de pedidos é diária. Há uma variação de aproximadamente 10% do número de pedidos em dias sequenciais.
 5. O objetivo desse projeto é apresentar as métricas por meio de gráficos e/ou tabelas para facilitar a tomada de decisão do CEO da empresa.
 
+<div align="center">
+  <img src="https://github.com/Marvinx9/marvis_company/assets/132841689/42f4887a-e221-4ad3-9af0-e85dabafcb51" width="700px" />
+</div>
+
 ### Próximos Passos
 Aprimoramento do Dashboard: Adição de mais recursos e melhorias visuais.
 Análise Preditiva: Explorar modelos para prever tendências futuras.
