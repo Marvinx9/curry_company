@@ -185,25 +185,27 @@ tab1, tab2, tab3 = st.tabs( [ 'Visão Gerencial', '_', '_'] )
 with tab1:
     with st.container():
         st.markdown('Overall Metrics')
-        col1, col2, col3, col4, col5, col6 = st.columns(6)
+        col1, col2, col3 = st.columns(3)
         with col1:
             uni = len( df1.loc[:, 'Delivery_person_ID'].unique())
-            col1.metric('EntrÚnic', uni)
+            col1.metric('Entrega Única', uni)
         with col2:
-            avg_distance = distmedent(df1)
-            col2.metric('DistMedEnt', avg_distance)
+            df_aux = sdt_avg_time(df1, op='std_time', festival='Yes')
+            col2.metric( 'Desvio Padrão de Entrega com Festa', df_aux)
         with col3:
             df_aux = sdt_avg_time(df1, op='avg_time', festival='Yes')
-            col3.metric( 'TpMedEntCFest', df_aux)
+            col3.metric( 'Tempo Médio de Entrega com Festa', df_aux)
+        col4, col5, col6 = st.columns(3)
         with col4:
-            df_aux = sdt_avg_time(df1, op='std_time', festival='Yes')
-            col4.metric( 'STDEntreCFest', df_aux)
+            avg_distance = distmedent(df1)
+            col4.metric('Distribuição Média de Entrega', avg_distance)
         with col5:
-            df_aux = sdt_avg_time(df1, op='avg_time', festival='No')
-            col5.metric( 'TpMedEntSFest', df_aux)
-        with col6:
             df_aux = sdt_avg_time(df1, op='std_time', festival='No')
-            col6.metric( 'STDEntreSFest', df_aux)
+            col5.metric( 'Desvio Padrão de Entrega sem Festa', df_aux)
+            
+        with col6:
+            df_aux = sdt_avg_time(df1, op='avg_time', festival='No')
+            col6.metric( 'Tempo Médio de Entrega sem Festa', df_aux)
     with st.container():
         st.markdown("""---""")
         st.markdown('## Tempo Médio e Desvio Padrão')
@@ -211,7 +213,7 @@ with tab1:
         with col1:
             st.markdown('#### Por Cidade e Tráfego')
             fig = tempo_medio_cidade_trafego(df1)
-            st.plotly_chart( fig )
+            st.plotly_chart( fig, use_container_width=True)
         with col2:
             st.markdown('#### Por Cidade e Pedido')
             df_aux = tempo_medio_std_cidade_pedido(df1)
@@ -222,7 +224,7 @@ with tab1:
         col1, col2 = st.columns( 2 )
         with col1:
             fig = distancia_cidade(df1)
-            st.plotly_chart( fig )
+            st.plotly_chart( fig, use_container_width=True )
         with col2:
             fig = densidade_trafego_cidade(df1)
             st.plotly_chart(fig)
